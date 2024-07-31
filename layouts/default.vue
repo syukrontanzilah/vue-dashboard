@@ -3,8 +3,11 @@
 </script>
 
 <template>
-    <div>
-        <p>Lorem ipsum dolor, </p>
-        <slot/>
+    <div class="grid lg:flex items-start">
+            <Sidebar/>
+        <div>
+            <slot/>            
+        </div>
+       
     </div>
 </template>
