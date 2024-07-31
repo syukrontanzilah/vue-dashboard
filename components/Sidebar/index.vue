@@ -5,7 +5,7 @@ const open = ref(false);
 
 <template>
     <div class="">
-        <div class="flex z-50 items-center justify-between w-full h-full p-4 lg:hidden">
+        <div class="flex z-50 items-center justify-between w-full h-full p-4 lg:hidden shadow-sm">
             <Logo/>
             <Icon 
             class="z-50 cursor-pointer left-2 top-2" size="30" 

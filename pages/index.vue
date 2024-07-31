@@ -1,17 +1,66 @@
 <script lang="ts" setup>
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@/components/ui/tabs'
 const loading = ref(false)
 </script>
 
 <template>
-    <div>
-        <Button>Button</Button>
-        <Card class="p-4">ola Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi, sit! Similique in d</Card>
-        <Input placeholder="input disini wirr"/>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero doloribus ad at saepe error eaque rerum? Delectus tempore rem laboriosam ut eligendi veritatis beatae laudantium accusamus, harum modi. Ab, mollitia?
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe sequi nostrum, minus nobis, sapiente libero delectus autem asperiores est voluptatum dolorem suscipit consequatur nemo tenetur facere laudantium iure quisquam magnam.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa dignissimos beatae adipisci? In doloremque explicabo quibusdam, quae omnis, necessitatibus, magnam delectus aliquam eius quisquam possimus consectetur architecto saepe laudantium quas.lore
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, necessitatibus. Numquam, neque! Sit perspiciatis quos illo voluptatum obcaecati amet in corporis sequi eligendi aliquid fuga consectetur aliquam, provident ullam nesciunt!
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet assumenda aliquid distinctio nemo ad, consequuntur, voluptatum deserunt obcaecati hic vel natus? Reiciendis cumque nisi assumenda sed, qui rem consectetur pariatur.
+    <div class="grid gap-4 w-full">
+        <header class="flex items-start justify-between">
+            <div class="grow">
+             <h1>Dashboard</h1>
+            <p>Hi, Welcome back to Dashboard!</p>               
+            </div>
+            <div class="w-[120px] h-[36px] bg-neutral-200"></div>
+
+        </header>
+        <main class="grid gap-4">
+            <!-- <div class="flex items-center gap-4">
+                <div 
+                v-for="(item, index) in 3" 
+                :key="index"
+                class="w-[120px] h-[36px] bg-neutral-200"
+                ></div>
+            </div>
+            <section>
+                <div class="w-ful h-[360px] bg-neutral-200"></div>
+            </section> -->
+    <Tabs default-value="account" class="w-full">
+    <TabsList class="bg-green-600 text-white">
+      <TabsTrigger value="today">
+        Today
+      </TabsTrigger>
+      <TabsTrigger value="week">
+        Week
+      </TabsTrigger>
+      <TabsTrigger value="month">
+        Month
+      </TabsTrigger>
+      <TabsTrigger value="year">
+        Year
+      </TabsTrigger>
+    </TabsList>
+    <TabsContent value="today">
+        this today tab
+    </TabsContent>
+    <TabsContent value="week">
+        this week tab
+    </TabsContent>
+    <TabsContent value="month">
+        this month tab
+    </TabsContent>
+    <TabsContent value="year">
+        this year tab
+    </TabsContent>
+  </Tabs>
+        </main>
+        <footer>
+            footer
+        </footer>
     </div>
 </template>
 

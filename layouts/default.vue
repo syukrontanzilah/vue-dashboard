@@ -3,9 +3,9 @@
 </script>
 
 <template>
-    <div class="grid lg:flex items-start">
+    <div class="grid lg:flex items-start font-nunito">
             <Sidebar/>
-        <div>
+        <div class="p-6 lg:px-8 w-full">
             <slot/>            
         </div>
        
