@@ -1,4 +1,8 @@
 <script lang="ts" setup>
+import { useHead } from '@vueuse/head'
+useHead({
+  title: 'Overview'
+})
 import {
   Tabs,
   TabsContent,
@@ -31,11 +35,12 @@ const list = [
         </header>
         <main class="grid gap-4">
     <Tabs default-value="today" class="w-full">
-    <TabsList class="bg-green-600 text-white">
+    <TabsList class="">
       <TabsTrigger 
       v-for="item, index in list" 
       :value="item.title"
       :key="index"
+      class="capitalize"
       >
         {{item.title}}
       </TabsTrigger>
