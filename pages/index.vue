@@ -5,7 +5,18 @@ import {
   TabsList,
   TabsTrigger,
 } from '@/components/ui/tabs'
+import { ref, resolveComponent } from 'vue'
 const loading = ref(false)
+const TabsToday = resolveComponent('TabsToday')
+const TabsWeek = resolveComponent('TabsWeek');
+const TabsMonth = resolveComponent('TabsMonth');
+const TabsYear = resolveComponent('TabsYear')
+const list = [
+    {title: "today", component: TabsToday},
+    {title: "week", component:TabsWeek},
+    {title: "month", component:TabsMonth},
+    {title: "year", component:TabsYear},
+]
 </script>
 
 <template>
@@ -19,47 +30,28 @@ const loading = ref(false)
 
         </header>
         <main class="grid gap-4">
-            <!-- <div class="flex items-center gap-4">
-                <div 
-                v-for="(item, index) in 3" 
-                :key="index"
-                class="w-[120px] h-[36px] bg-neutral-200"
-                ></div>
-            </div>
-            <section>
-                <div class="w-ful h-[360px] bg-neutral-200"></div>
-            </section> -->
-    <Tabs default-value="account" class="w-full">
+    <Tabs default-value="today" class="w-full">
     <TabsList class="bg-green-600 text-white">
-      <TabsTrigger value="today">
-        Today
-      </TabsTrigger>
-      <TabsTrigger value="week">
-        Week
-      </TabsTrigger>
-      <TabsTrigger value="month">
-        Month
-      </TabsTrigger>
-      <TabsTrigger value="year">
-        Year
+      <TabsTrigger 
+      v-for="item, index in list" 
+      :value="item.title"
+      :key="index"
+      >
+        {{item.title}}
       </TabsTrigger>
     </TabsList>
-    <TabsContent value="today">
-        this today tab
-    </TabsContent>
-    <TabsContent value="week">
-        this week tab
-    </TabsContent>
-    <TabsContent value="month">
-        this month tab
-    </TabsContent>
-    <TabsContent value="year">
-        this year tab
+    <TabsContent 
+    v-for="item, index in list" 
+    :value="item.title"
+    :key="index"
+    >
+    <!-- {{ item.component }} -->
+    <component :is="item.component" />
     </TabsContent>
   </Tabs>
         </main>
         <footer>
-            footer
+            <!-- footer -->
         </footer>
     </div>
 </template>
