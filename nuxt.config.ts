@@ -6,7 +6,7 @@
 // })
 
 export default defineNuxtConfig({
-  modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt', "@nuxt/icon"],
+  modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt', "@nuxt/icon", 'nuxt-highcharts',],
   shadcn: {
     /**
      * Prefix for all the imported component
@@ -17,5 +17,6 @@ export default defineNuxtConfig({
      * @default "./components/ui"
      */
     componentDir: './components/ui'
-  }
+  },
+
 })

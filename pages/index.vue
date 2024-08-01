@@ -20,7 +20,75 @@ const list = [
     {title: "week", component:TabsWeek},
     {title: "month", component:TabsMonth},
     {title: "year", component:TabsYear},
-]
+];
+let data = ref([16.0, 18.2, 23.1, 27.9, 32.2, 36.4, 39.8, 38.4, 35.5, 29.2, 22.0, 17.8 ])
+let categories = ref({
+    'today': [],
+    'week': [],
+    'month': [],
+    'year':[]
+})
+
+let currentCategory = ref(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep','Oct', 'Nov', 'Dec'])
+
+const options = computed(()=>({
+    chart: {
+        type: 'line',
+        animation: {
+            // enabled: false,
+        }
+    },
+    title: {
+        text: ''
+    },
+    legend:{
+        enabled: false
+    },
+    // subtitle: {
+    //     text: ''
+    // },
+    xAxis: {
+        gridLineColor:'transparent',
+        categories: currentCategory
+    },
+    yAxis: {
+        gridLineColor:'transparent',
+        title: {
+            text: ''
+        }
+    },
+    plotOptions: {
+        line: {
+            marker: {
+                enable: false
+            },
+            dataLabels: {
+                enabled: false
+            },
+            enableMouseTracking: false
+        }
+    },
+    series: [{
+        name: 'line',
+        lineWidth:'4px',
+        color: {
+            linearGradient: {},
+            stops:[
+               [0,'rgba(252,176,69,1)'],
+               [0.33,'rgba(253,29,29,1)'],
+               [0.66,'rgba(131,58,180,1)'],
+               [1,'rgba(29,217,83,1'],
+                
+            ]
+        },
+        data: data.value
+    }]
+}))
+
+function generateRandomData(){
+    
+}
+
 </script>
 
 <template>
@@ -51,8 +119,10 @@ const list = [
     :key="index"
     >
     <!-- {{ item.component }} -->
-    <component :is="item.component" />
-    </TabsContent>
+    <!-- <component :is="item.component" /> -->
+    <highchart :options="options" />
+
+  </TabsContent>
   </Tabs>
         </main>
         <footer>
