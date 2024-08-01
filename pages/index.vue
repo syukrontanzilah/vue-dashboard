@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 import { useHead } from '@vueuse/head'
 useHead({
   title: 'Overview'
@@ -23,13 +23,13 @@ const list = [
 ];
 let data = ref([16.0, 18.2, 23.1, 27.9, 32.2, 36.4, 39.8, 38.4, 35.5, 29.2, 22.0, 17.8 ])
 let categories = ref({
-    'today': [],
-    'week': [],
-    'month': [],
-    'year':[]
+    today: ['01.00','02.00','03.00'],
+    week: ['Sunday', 'Moday', 'Tuesday','Wednesday','Thursday','Friday','Saturday'],
+    month: ['Jan', 'Feb','Mar','Apr','Mei','Jun','Jul','Ags','Sep','Oct','Nov','Dec'],
+    year:['2021','2022','2023','2024']
 })
 
-let currentCategory = ref(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep','Oct', 'Nov', 'Dec'])
+let currentCategory = ref('today')
 
 const options = computed(()=>({
     chart: {
@@ -49,7 +49,7 @@ const options = computed(()=>({
     // },
     xAxis: {
         gridLineColor:'transparent',
-        categories: currentCategory
+        categories: categories.value[currentCategory.value]
     },
     yAxis: {
         gridLineColor:'transparent',
@@ -85,9 +85,37 @@ const options = computed(()=>({
     }]
 }))
 
-function generateRandomData(){
-    
+const setCategory = (e) => {
+    let v = e.target.innerText.toLowerCase();
+    currentCategory.value = v;
+    switch(v){
+        case 'today':
+            generateRandomData(24);
+        case 'week':
+            generateRandomData(7);
+        case 'month':
+            generateRandomData(12);
+        case 'year':
+            generateRandomData(365);
+        default:
+            generateRandomData(7);
+
+    }
 }
+
+function generateRandomData(number=7){
+    let values = [];
+    for (let i = 0; i < number; i++){
+        values.push(Math.floor(Math.random()*100))
+    }
+    console.log('values', values);
+    data.value = values;
+    return values;
+}
+
+onMounted(()=>{
+    generateRandomData()
+})
 
 </script>
 
@@ -102,7 +130,7 @@ function generateRandomData(){
 
         </header>
         <main class="grid gap-4">
-    <Tabs default-value="today" class="w-full">
+    <Tabs default-value="today" @click="setCategory" class="w-full">
     <TabsList class="">
       <TabsTrigger 
       v-for="item, index in list" 
